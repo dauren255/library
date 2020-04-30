@@ -19,13 +19,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/auth/**").permitAll()
                 .antMatchers("/user", "/book", "/v2/api-docs").permitAll()
                 .antMatchers("/user/create").hasAnyAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and().formLogin()
-//                .and()
-//                .addFilter(new JwtTokenGeneratorFilter(authenticationManager()))
-//                .addFilterAfter(new JwtTokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+                .and()
+                .addFilter(new JwtTokenGeneratorFilter(authenticationManager()))
+                .addFilterAfter(new JwtTokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
                 ;
     }

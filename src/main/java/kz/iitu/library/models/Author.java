@@ -1,5 +1,6 @@
 package kz.iitu.library.models;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import javax.persistence.*;
 import java.util.List;
@@ -11,10 +12,10 @@ import java.util.List;
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(notes = "This author id")
     private Long id;
-
+    @ApiModelProperty(notes = "This author name")
     private String name;
-
     public Author(String name){
         this.name = name;
     }

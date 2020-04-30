@@ -1,5 +1,6 @@
 package kz.iitu.library.models;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import javax.persistence.*;
 import java.util.List;
@@ -12,8 +13,9 @@ public class Genre {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(notes = "This genre id")
     private Long id;
-
+    @ApiModelProperty(notes = "This genre name")
     private String name;
 
     public Long getId() {

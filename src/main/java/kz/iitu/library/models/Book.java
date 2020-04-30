@@ -46,8 +46,11 @@ public class Book {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @ApiModelProperty(notes = "This date when book given to user")
     private Date givenDate;
+    @ApiModelProperty(notes = "This date when book's due date for user")
     private Date dueDate;
+
 
     public Book(String title) {
         this.title = title;

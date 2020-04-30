@@ -1,5 +1,6 @@
 package kz.iitu.library.models;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,13 +18,17 @@ import java.util.List;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(notes = "This user id")
     private Long id;
 
     @Column(unique = true)
+    @ApiModelProperty(notes = "This user username")
     private String username;
+    @ApiModelProperty(notes = "This user password")
     private String password;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ApiModelProperty(notes = "This user books")
     private List<Book> books;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -31,6 +36,7 @@ public class User implements UserDetails {
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
     )
+    @ApiModelProperty(notes = "This user roles")
     private List<Role> roles;
 
     public void notify(Book book){
